@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_simple_expense,access_simple_expense,model_simple_expense,group_simple_expenses,1,1,1,1
+access_simple_expense_line,access_simple_expense_line,model_simple_expense_line,group_simple_expenses,1,1,1,1
+access_simple_expense_category,access_simple_expense_category,model_simple_expense_category,group_simple_expenses,1,1,1,1

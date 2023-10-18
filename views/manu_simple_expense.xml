@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="action_open_simple_expense" model="ir.actions.act_window">
+		<field name="name">Gastos</field>
+		<field name="res_model">simple.expense</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">tree,form,pivot</field>
+	</record>
+		<record id="action_open_simple_expense_category" model="ir.actions.act_window">
+		<field name="name">Categorias de gastos</field>
+		<field name="res_model">simple.expense.category</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+    <menuitem id="menu_simple_expenses" name="Gastos Simples" web_icon="ati_simple_expenses,static/description/icon.png"/>
+	<menuitem id="menu_simple_expense" name="Gastos" parent="menu_simple_expenses" action="action_open_simple_expense"/>
+	<menuitem id="menu_simple_expense_category" name="Categorias" parent="menu_simple_expenses" action="action_open_simple_expense_category"/> 
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="group_simple_expenses" model="res.groups">
+            <field name="name">Gastos Simples</field>
+        </record>
+
+    </data>
+</odoo>

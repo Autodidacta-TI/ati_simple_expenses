@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="simple_expense_view_pivot" model="ir.ui.view">
+        <field name="name">simple.expense.view.pivot</field>
+        <field name="model">simple.expense</field>
+        <field name="arch" type="xml">
+            <pivot string="" disable_linking="true">
+                <field name="category_expense" type="col"/>
+                <field name="date_expense" type="row"/>
+                <field name="total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="simple_expense_view_tree" model="ir.ui.view">
+        <field name="name">simple.expense.view.tree</field>
+        <field name="model">simple.expense</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="date_expense" />
+                <field name="category_expense" />
+                <field name="supplier_id" />
+                <field name="expense_manager_id" />
+                <field name="total" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="simple_expense_view_form" model="ir.ui.view">
+        <field name="name">simple.expense.view.form</field>
+        <field name="model">simple.expense</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Aprobar" type="object" name="done_expense" class="oe_highlight" states="draft"/>
+                    <button string="Cancelar" type="object" name="cancel_expense" states="draft,done"/>
+                    <button string="Borrador" type="object" name="draft_expense" states="done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="o_row">                            
+                            <h1 style="display: flex;">
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="expense_manager_id" attrs="{'readonly': [('state','=','done')]}"/>
+                            <field name="category_expense" attrs="{'readonly': [('state','=','done')]}"/>
+                            <field name="reference" attrs="{'readonly': [('state','=','done')]}"/>
+                        </group>
+                        <group>
+                            <field name="date_expense" attrs="{'readonly': [('state','=','done')]}"/>
+                            <field name="supplier_id" attrs="{'readonly': [('state','=','done')]}"/>
+                        </group>
+                        <notebook>
+                            <page name="expenses" string="Gastos" >
+                                <field name="simple_expense_ids" attrs="{'readonly': [('state','=','done')]}">
+                                    <tree editable="bottom" >
+                                        <control>
+                                            <create name="add_product_control" string="Nuevo Gasto"/>
+                                        </control>
+                                        <field name="name"/>
+                                        <field name="product"/>
+                                        <field name="qty"/>
+                                        <field name="price"/>
+                                        <field name="total" readonly="1" force_save="1"/>
+                                    </tree>
+                                </field>
+                                <group col="6" class="mt-2 mt-md-0">
+                                    <group colspan="4">
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2">
+                                        <div class="oe_subtotal_footer_separator oe_line o_td_label">
+                                        <label for="total"/>
+                                        </div>
+                                        <field name="total" force_save="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+                                    </group>
+                                    <div class="oe_clear"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
